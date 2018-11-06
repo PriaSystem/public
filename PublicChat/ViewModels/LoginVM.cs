@@ -9,36 +9,6 @@ namespace PublicChat.ViewModels
 {
     public class LoginVM : BaseVM<LoginPage>
     {
-        private string mNickname;
-        public string Nickname
-        {
-            get { return mNickname; }
-            set
-            {
-                if (mNickname != value)
-                {
-                    mNickname = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private bool mIsLoading;
-        public bool IsLoading
-        {
-            get { return mIsLoading; }
-            set
-            {
-                if (mIsLoading != value)
-                {
-                    mIsLoading = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        readonly RealtimeDatabase DB = new RealtimeDatabase();
-
         public LoginVM()
         {
 
@@ -51,46 +21,21 @@ namespace PublicChat.ViewModels
             {
                 return mOnLoginPressed ?? (mOnLoginPressed = new Command((arg) =>
                 {
-                    if (ValidateNickname())
-                    {
-                        CreateAccount();
-                    }
+                    //todo create account
                 }));
             }
         }
 
-        bool ValidateNickname()
-        {
-            return !String.IsNullOrEmpty(Nickname) && Nickname.Length > 3;
-        }
-
         async void CreateAccount()
         {
-            IsLoading = true;
+            bool success = false;
 
-
-            User user = new User()
-            {
-                Uid = DB.UID,
-                Nickname = Nickname,
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
-            };
-
-            bool success = await DB.CreateUser(user);
-
-            await DB.SendMessage(new Message()
-            {
-                Nickname = Nickname,
-                Body = $"{Nickname} joined !",
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
-            });
+            //todo create user account
 
             if (success)
             {
-                await Navigation.PushAsync(new ChatVM(user).Page);
+                //todo open chat
             }
-
-            IsLoading = false;
         }
     }
 }

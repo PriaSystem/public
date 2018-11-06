@@ -10,7 +10,19 @@ namespace PublicChat
     {
         public App()
         {
-            MainPage = new NavigationPage(new LoginVM().Page);
+            //todo MainPage
+            MainPage = new ContentPage()
+            {
+                Content = new ContentView()
+                {
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center,
+                    Content = new Label()
+                    {
+                        Text = "Hello"
+                    }
+                }
+            };
         }
 
         protected override void OnStart()

@@ -27,7 +27,7 @@ namespace PublicChat.iOS
 
         public async Task<bool> Add(string key, object value)
         {
-            string id = Database.DefaultInstance.GetReferenceFromPath(key).GetChildByAutoId().Key;
+            string id = "uid"; //todo
 
             if (!key.EndsWith("/", StringComparison.Ordinal))
             {
@@ -39,40 +39,21 @@ namespace PublicChat.iOS
 
         public async Task<string> Get(string key)
         {
-            TaskCompletionSource<string> task = new TaskCompletionSource<string>();
+            //todo
 
-            Database.DefaultInstance.GetReferenceFromPath(key)
-                    .ObserveSingleEvent(DataEventType.Value, (snapshot) =>
-                    {
-                        string value = snapshot.GetValue().ToString();
-
-                        task.SetResult(value);
-                    });
-
-            return await task.Task;
-
+            return null;
         }
 
         public async Task<bool> Set(string key, object value)
         {
-            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            //todo
 
-            Database.DefaultInstance.GetReferenceFromPath(key)
-                    .SetValue(ToDictionary(value), (error, reference) =>
-                    {
-                        task.SetResult(error == null);
-                    });
-
-            return await task.Task;
+            return false;
         }
 
         public void Subscribe(string key, Action<string> callback)
         {
-            Database.DefaultInstance.GetReferenceFromPath(key)
-                    .ObserveEvent(DataEventType.ChildAdded, (DataSnapshot snapshot) =>
-                    {
-                        callback.Invoke(ConvertSnapshot(snapshot));
-                    });
+            //todo
         }
 
         public NSDictionary<NSString, NSString> ToDictionary(object data)
