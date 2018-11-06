@@ -1,4 +1,5 @@
 ﻿using System;
+using PublicChat.Views;
 using Xamarin.Forms;
 
 namespace PublicChat.Pages
@@ -17,10 +18,11 @@ namespace PublicChat.Pages
                 {
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
-                        new Entry(){
+                        new ChatEntry(){
                             HorizontalOptions = LayoutOptions.FillAndExpand,
                             HeightRequest = 56.0f,
-                            Keyboard = Keyboard.Create(KeyboardFlags.None)
+                            Keyboard = Keyboard.Create(KeyboardFlags.None),
+                            HorizontalTextAlignment = TextAlignment.Center,
                         }.Binding(Entry.TextProperty, new Binding("Nickname")),
                         new Button(){
                             Text = "Login",

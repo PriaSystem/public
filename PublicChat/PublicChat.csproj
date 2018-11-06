@@ -21,5 +21,6 @@
     <Folder Include="Pages\" />
     <Folder Include="Fire\" />
     <Folder Include="Entity\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>
